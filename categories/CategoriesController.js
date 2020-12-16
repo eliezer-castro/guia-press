@@ -1,25 +1,35 @@
 const express = require('express');
 const router = express.Router();
 const Category = require('./Category')
-const slugfy = require('Slugify')
+const slugify = require('Slugify')
 
 
 router.get('/admin/categories/new', (req, res) => {
   res.render('admin/categories/new')
 })
 
+
+
 router.post('/categories/save', (req, res) => {
-  var title = req.body.title
+  let title = req.body.title;
   if (title != undefined) {
-    Category.creat({
+    Category.create({ // Salvando no BD
       title: title,
-      slug: slugfy(title)
-    }).then(()=>{
-      res.redirect("/");
-    })
+      slug: slugify(title)
+    }).then(() => {
+      res.redirect('/');
+    });
   } else {
-    req.redirect('/admin/categories/new')
+    res.redirect('/admin/categories/new');
   }
 });
+
+router.get('/admin/categories', (req, res) => {
+
+  Category.findAll().then(categories => {
+    res.render('admin/categories/index', { categories: categories })
+  })
+});
+
 
 module.exports = router;
