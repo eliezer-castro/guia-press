@@ -2,12 +2,12 @@ const Sequelize = require('sequelize');
 const connection = require('../database/database');
 const Category = require('../categories/Category')
 
-
 const Article = connection.define('articles', {
   title: {
     type: Sequelize.STRING,
     allowNull: false
-  }, slug: {
+  },
+  slug: { //  Slug é um versão otimizada de um string para ser utilizada em rotas, nas urls.
     type: Sequelize.STRING,
     allowNull: false
   },
@@ -17,8 +17,8 @@ const Article = connection.define('articles', {
   }
 });
 
-Category.hasMany(Article); // Uma categoria tem muitos relacionamentos
-Article.belongsTo(Category); // Um Artigo pertence a uma categoria
-
+Category.hasMany(Article);
+Article.belongsTo(Category); // Um artigo pertence a uma categoria
+//Article.sync({force:true}).then(() =>{});  // usando apenas na primeiras vez
 
 module.exports = Article;
