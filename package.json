@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon"
   },
   "author": "",
   "license": "ISC",
@@ -13,9 +13,11 @@
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "mysql2": "^2.2.5",
-    "nodemon": "^2.0.6",
     "sequelize": "^6.3.5",
     "slug": "^4.0.2",
     "slugify": "^1.4.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
   }
 }
